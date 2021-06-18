@@ -89,6 +89,14 @@ function isChrome() {
 Reactive Programming is programming with asynchronous data streams
 Angular uses RxJS observables. I can’t understand something until I create it with my own hands
 
+### Tips from Angular Viet Nam Group
+#### the number of times Source$ was emitted
+Some Operators from RxJS that store the number of times Source$ was emitted with index
+When working with RxJS, you may have wondered "it would be nice to know how many times source$ has been emitted but then worry about having to keep track of this count yourself (either by local var or by scan). ()).
+Don't worry, some popular operators already store this count value for you. For example, how to use skipWhile() as shown. Operators like map(), filter(), concatMap(), switchMap(), etc... all have this index variable.
+
+![operator_index](https://user-images.githubusercontent.com/43747716/122506708-0f11e680-d029-11eb-96ad-8dc20a493ec4.jpg)
+
 ## Angular route
 ### data setup in routing
 Use case for detect user role
