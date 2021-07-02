@@ -1,5 +1,8 @@
 # Angular Directives
 ### Concepts
+* <b>Angular.io: </b>
+  Directives are classes that add additional behavior to elements in your Angular applications. 
+* <b>Other explain: </b>
   Directives are custom HTML attributes which tell angular to change the style or behavior of the DOM elements.
 ### Types
   
