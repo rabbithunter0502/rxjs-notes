@@ -82,5 +82,13 @@ OnInit, The router handles URLs internally.
   
   ![image-198](https://user-images.githubusercontent.com/43747716/124342587-0dcae700-dbef-11eb-87f6-fb2a2fae0986.png)
 
+    <h4>Brief</h4>
+    * The entire URL is represented as a UrlTree.
+    * Interior nodes of the tree (those which have child nodes of UrlSegments) are represented as UrlSegmentGroups. These are usually associated with a specific router outlet, such as primary and sidebar in the example above.
+    * Leaf nodes (those with no children) are represented as UrlSegments. A UrlSegment is any part of a URL occurring between two slashes, for instance /users/1/notes/42 has four segments, users 1 notes and 42. These are what will be matched to path properties in the router configurations in ROUTES. UrlSegments can also contain matrix parameters, which are data specific to a segment. Matrix parameters are separated by semicolons ;, such as name and type in the example/users;name=nate;type=admin/.
+    * The root node has a child UrlSegmentGroup for each outlet. In this case, it has two; one for the default outlet (primary), and one for the secondary outlet (sidebar). Internally, the router serializes secondary outlets in the URL within parenthesis, such as (secondary_outlet_name:secondary_path_name), and matches them to configuration objects which have a matching outlet property, such as {path: ‘secondary_path_name’, outlet: ‘secondary_outlet_name'}. We’ll see later that outlets are routed independently of each other.
+    * Fragments and query params live as properties on the UrlTree.
+    * A new UrlTree is generated each time the URL changes. UrlTree creation happens synchronously, and independently from the task of matching the URL to something in the ROUTES configuration tree. This is an important distinction because matching may be asynchronous. For instance, matching might require a router configuration from a lazily-loaded module to be loaded asynchronously. We’ll see more on this in the next section on redirects.
+    
 ## Stage 2: Applying Redirects
   
